@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Experience & Education - Morgan Maxwell</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .nav-link {
+        transition: all 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #90caf9 !important;
+        text-shadow: 0 0 10px #90caf9;
+        transform: scale(1.05);
+      }
+      @keyframes riseUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .rise-animate {
+        animation: riseUp 0.8s ease-out;
+      }
+      body {
+        background-color: #121212;
+        color: #e0e0e0;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+      main {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+      }
+      .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        margin-bottom: 2rem;
+        color: #90caf9;
+        text-shadow: 0 0 10px #90caf9;
+      }
+      .timeline-container {
+        position: relative;
+        max-width: 900px;
+        width: 100%;
+        padding: 2rem 0;
+      }
+      .timeline-line {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 3px;
+        background: linear-gradient(180deg, #00ffff, #0077ff);
+        box-shadow: 0 0 10px #00ffff, 0 0 20px #0077ff;
+        transform: translateX(-50%);
+        border-radius: 2px;
+        z-index: 1;
+      }
+      .timeline-item {
+        position: relative;
+        width: 45%;
+        margin-bottom: 4rem;
+        opacity: 0;
+        transform: translateX(0);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+      }
+      .timeline-item.left {
+        left: 0;
+        text-align: right;
+        margin-left: 0;
+      }
+      .timeline-item.right {
+        left: 55%;
+        text-align: left;
+        margin-left: 0;
+      }
+      .timeline-marker {
+        position: absolute;
+        top: 1rem;
+        width: 50px;
+        height: 50px;
+        background: linear-gradient(135deg, #00ffff, #0077ff);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 0 15px #00ffff, 0 0 25px #0077ff;
+        z-index: 2;
+        border: 3px solid #121212;
+      }
+      .timeline-item.left .timeline-marker {
+        right: -25px;
+      }
+      .timeline-item.right .timeline-marker {
+        left: -25px;
+      }
+      .timeline-content {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(15px);
+        border-radius: 15px;
+        padding: 2rem;
+        box-shadow: 0 8px 32px rgba(0, 255, 255, 0.2);
+        color: #e0e0e0;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+      .timeline-content:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 40px rgba(0, 255, 255, 0.4), 0 0 30px #00ffff;
+      }
+      .timeline-content h3 {
+        margin-top: 0;
+        margin-bottom: 0.5rem;
+        color: #00ffff;
+        font-size: 1.3rem;
+      }
+      .timeline-content .subtitle {
+        font-style: italic;
+        margin-bottom: 1rem;
+        color: #90caf9;
+      }
+      .timeline-content p {
+        margin: 0.3rem 0;
+        line-height: 1.5;
+      }
+      .timeline-content ul {
+        margin: 0;
+        padding-left: 1.5rem;
+      }
+      .timeline-content li {
+        margin-bottom: 0.5rem;
+        line-height: 1.5;
+      }
+      .timeline-item.visible {
+        opacity: 1;
+        transform: translateX(0);
+      }
+      .timeline-item.left.visible {
+        transform: translateX(0);
+      }
+      .timeline-item.right.visible {
+        transform: translateX(0);
+      }
+      /* Responsive */
+      @media (max-width: 768px) {
+        .timeline-line {
+          left: 50%;
+          width: 2px;
+        }
+        .timeline-item {
+          width: 80%;
+          margin-bottom: 3rem;
+          text-align: left !important;
+          left: 10% !important;
+        }
+        .timeline-item.left,
+        .timeline-item.right {
+          left: 10% !important;
+        }
+        .timeline-item .timeline-marker {
+          left: -25px !important;
+          right: auto !important;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header
+      class="py-3 px-4 border-bottom border-dark d-flex align-items-center"
+      style="background-color: #1f1f1f"
+    >
+      <nav class="w-100">
+        <ul class="nav nav-pills gap-3 m-0 justify-content-around">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About Me.html">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sample-work.html">Sample Work</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="testimonial.html">Client Testimonial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="experience.html"
+              >Experience & Education</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <section class="timeline-section">
+        <h2 class="section-title">Education & Experience</h2>
+        <div class="timeline-container">
+          <div class="timeline-line"></div>
+          <div class="timeline-item experience right">
+            <div class="timeline-marker">
+              <span class="icon">💼</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Digital Egypt Pioneers Initiative (DEPI)</h3>
+              <p class="subtitle">Data Analysis Track</p>
+              <ul>
+                <li>Analyzed large datasets using Excel and Python to extract insights and detect patterns.</li>
+                <li>Cleaned, joined, and transformed raw data using SQL and Power Query.</li>
+                <li>Designed interactive dashboards in Power BI to visualize KPIs.</li>
+              </ul>
+            </div>
+          </div>
+          <div class="timeline-item education left">
+            <div class="timeline-marker">
+              <span class="icon">🎓</span>
+            </div>
+            <div class="timeline-content">
+              <h3>Faculty of Science, Ain Shams University</h3>
+              <p class="subtitle">Computer Science Program</p>
+              <p>GPA: 3.06</p>
+              <p>2023 – 2027</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const timelineLine = document.querySelector('.timeline-line');
+
+        // Initial states
+        timelineItems.forEach((item, index) => {
+          item.style.opacity = '0';
+          if (item.classList.contains('left')) {
+            item.style.transform = 'translateX(-100px)';
+          } else {
+            item.style.transform = 'translateX(100px)';
+          }
+        });
+        timelineLine.style.height = '0';
+
+        // Animate timeline line and items on scroll
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach((entry, index) => {
+            if (entry.isIntersecting) {
+              // Animate timeline line
+              setTimeout(() => {
+                timelineLine.style.transition = 'height 1.5s ease';
+                timelineLine.style.height = '100%';
+              }, 200);
+
+              // Animate items with stagger
+              timelineItems.forEach((item, itemIndex) => {
+                setTimeout(() => {
+                  item.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+                  item.style.opacity = '1';
+                  item.style.transform = 'translateX(0)';
+                }, 600 + (itemIndex * 300));
+              });
+
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        // Observe the timeline container
+        const timelineContainer = document.querySelector('.timeline-container');
+        observer.observe(timelineContainer);
+      });
+    </script>
+  </body>
+</html>

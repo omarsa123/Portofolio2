@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Sample Work - Morgan Maxwell</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      .nav-link {
+        transition: all 0.3s ease;
+      }
+      .nav-link:hover {
+        color: #90caf9 !important;
+        text-shadow: 0 0 10px #90caf9;
+        transform: scale(1.05);
+      }
+      @keyframes riseUp {
+        from {
+          opacity: 0;
+          transform: translateY(50px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .rise-animate {
+        animation: riseUp 0.8s ease-out;
+      }
+    </style>
+  </head>
+  <body>
+    <header
+      class="py-3 px-4 border-bottom border-dark d-flex align-items-center"
+      style="background-color: #1f1f1f"
+    >
+      <nav class="w-100">
+        <ul class="nav nav-pills gap-3 m-0 justify-content-around">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About Me.html">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sample-work.html">Sample Work</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="testimonial.html">Client Testimonial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="experience.html">Experience & Education</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main>
+      <ol>
+        <li>Commissioned by The Sierra Lane Museum for their website</li>
+        <li>Shots of The Whelton Building for event needs</li>
+      </ol>
+    </main>
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('rise-animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(document.querySelector('main'));
+    </script>
+  </body>
+</html>

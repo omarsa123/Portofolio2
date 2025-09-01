@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Home - Data Analyst Portfolio</title>
+    <!-- Bootstrap CSS CDN -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body
+    class="text-light d-flex flex-column min-vh-100"
+    style="background-color: #121212"
+  >
+    <header
+      class="py-3 px-4 border-bottom border-dark d-flex align-items-center"
+      style="background-color: #1f1f1f"
+    >
+      <nav class="w-100">
+        <ul class="nav nav-pills gap-3 m-0 justify-content-around">
+          <li class="nav-item">
+            <a class="nav-link" href="index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="About Me.html">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="sample-work.html">Sample Work</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="testimonial.html">Client Testimonial</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="experience.html"
+              >Experience & Education</a
+            >
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="contact.html">Contact</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main
+      class="container flex-grow-1 d-flex flex-column flex-md-row align-items-center gap-4 py-4"
+    >
+      <div class="d-flex flex-column align-items-center gap-4">
+        <div id="text-container" class="fs-5 lh-base"></div>
+        <div class="mt-4 d-flex gap-3">
+          <button id="sample-work-btn" class="btn btn-primary">
+            Show My Projects
+          </button>
+          <button id="connect-btn" class="btn btn-primary">
+            Let's Connect
+          </button>
+        </div>
+      </div>
+      <div class="flex-shrink-0">
+        <img
+          src="content.png"
+          alt="Profile Picture"
+          class="rounded-circle img-fluid"
+          style="max-width: 250px; width: 100%; height: auto"
+        />
+      </div>
+    </main>
+
+    <script>
+      const texts = [
+        "Hi, I'm Omar Hesham",
+        "Data Analyst",
+        "I bridge the gap between data and business needs by delivering clear insights that support smarter, faster decisions.",
+      ];
+
+      function typeText(element, text, delay = 30) {
+        return new Promise((resolve) => {
+          let i = 0;
+          function typing() {
+            if (i < text.length) {
+              element.textContent += text.charAt(i);
+              i++;
+              setTimeout(typing, delay);
+            } else {
+              resolve();
+            }
+          }
+          typing();
+        });
+      }
+
+      async function typeAllTexts() {
+        const container = document.getElementById("text-container");
+        container.textContent = "";
+        for (const text of texts) {
+          const p = document.createElement("p");
+          p.classList.add("mb-1");
+          if (container.children.length === 0) {
+            p.classList.add("fs-2", "fw-bold");
+          } else if (container.children.length === 1) {
+            p.classList.add("fs-4", "fw-semibold");
+          } else {
+            p.classList.add("fs-6");
+          }
+          container.appendChild(p);
+          await typeText(p, text);
+          await new Promise((r) => setTimeout(r, 300)); // pause between texts
+        }
+      }
+
+      // typeAllTexts();
+
+      // Set text directly without animation
+      const container = document.getElementById("text-container");
+      container.innerHTML = `
+        <h1 class="display-4 fw-bold text-primary mb-3">${texts[0]}</h1>
+        <h2 class="text-info mb-3">${texts[1]}</h2>
+        <p class="lead text-light">${texts[2]}</p>
+      `;
+
+      // Add raise animation CSS
+      const style = document.createElement("style");
+      style.textContent = `
+        @keyframes riseUp {
+          from {
+            opacity: 0;
+            transform: translateY(50px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+        .rise-animate {
+          animation: riseUp 0.8s ease-out;
+        }
+        @keyframes raiseText {
+          0% {
+            transform: translateX(-20px);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        @keyframes raisePhoto {
+          0% {
+            transform: translateX(20px);
+          }
+          100% {
+            transform: translateX(0);
+          }
+        }
+        @keyframes glow {
+          0% {
+            box-shadow: 0 0 5px #90caf9;
+          }
+          50% {
+            box-shadow: 0 0 20px #90caf9, 0 0 30px #90caf9;
+          }
+          100% {
+            box-shadow: 0 0 5px #90caf9;
+          }
+        }
+        #text-container {
+          opacity: 1;
+          animation: raiseText 1s ease forwards;
+        }
+        .flex-shrink-0 {
+          opacity: 1;
+          animation: raisePhoto 1s ease forwards;
+        }
+        #sample-work-btn, #connect-btn {
+          background: linear-gradient(45deg, #90caf9, #e0e0e0);
+          border: none;
+          border-radius: 50px;
+          padding: 15px 30px;
+          font-size: 1.2rem;
+          font-weight: bold;
+          color: #121212;
+          text-transform: uppercase;
+          letter-spacing: 2px;
+          position: relative;
+          overflow: hidden;
+          transition: all 0.3s ease;
+          box-shadow: 0 4px 15px rgba(144, 202, 249, 0.4);
+        }
+        #sample-work-btn:hover, #connect-btn:hover {
+          transform: scale(1.1);
+          box-shadow: 0 8px 25px rgba(144, 202, 249, 0.6);
+          animation: glow 2s infinite;
+        }
+        #sample-work-btn::before, #connect-btn::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+          transition: left 0.5s;
+        }
+        #sample-work-btn:hover::before, #connect-btn:hover::before {
+          left: 100%;
+        }
+        .nav-link {
+          transition: all 0.3s ease;
+        }
+        .nav-link:hover {
+          color: #90caf9 !important;
+          text-shadow: 0 0 10px #90caf9;
+          transform: scale(1.05);
+        }
+      `;
+      document.head.appendChild(style);
+
+      // Add click event for navigation
+      const btn = document.getElementById("sample-work-btn");
+      btn.addEventListener("click", () => {
+        window.location.href = "sample-work.html";
+      });
+      const connectBtn = document.getElementById("connect-btn");
+      connectBtn.addEventListener("click", () => {
+        window.location.href = "contact.html";
+      });
+
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('rise-animate');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.1 });
+
+      observer.observe(document.querySelector('#text-container'));
+      observer.observe(document.querySelector('.flex-shrink-0'));
+    </script>
+    <!-- Bootstrap JS Bundle CDN (Popper + Bootstrap JS) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
